@@ -1,0 +1,25 @@
+{
+  "name": "edupine-automation",
+  "version": "1.0.0",
+  "description": "K에듀파인 기안문 자동화 시스템",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "install-browsers": "npx playwright install chromium"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "adm-zip": "^0.5.17",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "form-data": "^4.0.1",
+    "iconv-lite": "^0.6.3",
+    "mammoth": "^1.8.0",
+    "node-fetch": "^2.7.0",
+    "pdf-parse": "^1.1.1",
+    "playwright": "^1.50.0",
+    "readline-sync": "^1.4.10",
+    "xlsx": "^0.18.5"
+  }
+}

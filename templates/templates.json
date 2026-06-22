@@ -1,0 +1,789 @@
+{
+  "templates": [
+    {
+      "id": "1779883425461",
+      "name": "현장체험학습 계획",
+      "category": "학교행사",
+      "description": "현장체험학습 계획 기안문 양식",
+      "formatText": "1. 목적\n2. 행사 개요\n   가. 일  시:\n   나. 장  소:\n   다. 대  상:\n   라. 인  원:\n   마. 인솔교사:\n3. 세부 프로그램\n   가.\n   나.\n4. 소요 예산\n   가. 합계: 원\n   나. 내역\n       1) 교통비: 원\n       2) 입장료: 원\n       3) 기타:   원\n5. 협조 사항\n붙임. 세부 일정표 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "목적",
+          "originalLine": "1. 목적",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "행사 개요",
+          "originalLine": "2. 행사 개요",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "일  시:",
+          "originalLine": "가. 일  시:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "장  소:",
+          "originalLine": "나. 장  소:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "다",
+          "content": "대  상:",
+          "originalLine": "다. 대  상:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "라",
+          "content": "인  원:",
+          "originalLine": "라. 인  원:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "마",
+          "content": "인솔교사:",
+          "originalLine": "마. 인솔교사:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "3",
+          "content": "세부 프로그램",
+          "originalLine": "3. 세부 프로그램",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "",
+          "originalLine": "가.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "",
+          "originalLine": "나.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "4",
+          "content": "소요 예산",
+          "originalLine": "4. 소요 예산",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "합계: 원",
+          "originalLine": "가. 합계: 원",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "내역",
+          "originalLine": "나. 내역",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "1",
+          "content": "교통비: 원",
+          "originalLine": "1) 교통비: 원",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "2",
+          "content": "입장료: 원",
+          "originalLine": "2) 입장료: 원",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "3",
+          "content": "기타:   원",
+          "originalLine": "3) 기타:   원",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "5",
+          "content": "협조 사항",
+          "originalLine": "5. 협조 사항",
+          "isPlaceholder": false
+        },
+        {
+          "level": 0,
+          "type": "attachment",
+          "marker": "세부 일정표 1부.  끝.",
+          "content": "세부 일정표 1부.  끝.",
+          "originalLine": "붙임. 세부 일정표 1부.  끝.",
+          "isPlaceholder": false
+        }
+      ],
+      "createdAt": "2026-05-27T12:03:45.461Z",
+      "updatedAt": "2026-05-27T12:03:45.461Z",
+      "usageCount": 0
+    },
+    {
+      "id": "1779883425469",
+      "name": "방과후학교 운영계획",
+      "category": "방과후",
+      "description": "방과후학교 운영계획 기안문 양식",
+      "formatText": "1. 목적\n2. 운영 개요\n   가. 운영 기간:\n   나. 운영 시간:\n   다. 장    소:\n   라. 대    상:\n   마. 강    사:\n3. 운영 내용\n   가. 교육 목표\n   나. 교육 내용\n       1)\n       2)\n       3)\n4. 평가 계획\n5. 기대 효과\n붙임. 1. 강의계획서 1부.\n      2. 강사 이력서 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "목적",
+          "originalLine": "1. 목적",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "운영 개요",
+          "originalLine": "2. 운영 개요",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "운영 기간:",
+          "originalLine": "가. 운영 기간:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "운영 시간:",
+          "originalLine": "나. 운영 시간:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "다",
+          "content": "장    소:",
+          "originalLine": "다. 장    소:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "라",
+          "content": "대    상:",
+          "originalLine": "라. 대    상:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "마",
+          "content": "강    사:",
+          "originalLine": "마. 강    사:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "3",
+          "content": "운영 내용",
+          "originalLine": "3. 운영 내용",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "교육 목표",
+          "originalLine": "가. 교육 목표",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "교육 내용",
+          "originalLine": "나. 교육 내용",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "1",
+          "content": "",
+          "originalLine": "1)",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "2",
+          "content": "",
+          "originalLine": "2)",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "3",
+          "content": "",
+          "originalLine": "3)",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "4",
+          "content": "평가 계획",
+          "originalLine": "4. 평가 계획",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "5",
+          "content": "기대 효과",
+          "originalLine": "5. 기대 효과",
+          "isPlaceholder": false
+        },
+        {
+          "level": 0,
+          "type": "attachment",
+          "marker": "1. 강의계획서 1부.",
+          "content": "1. 강의계획서 1부.",
+          "originalLine": "붙임. 1. 강의계획서 1부.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "강사 이력서 1부.  끝.",
+          "originalLine": "2. 강사 이력서 1부.  끝.",
+          "isPlaceholder": false
+        }
+      ],
+      "createdAt": "2026-05-27T12:03:45.470Z",
+      "updatedAt": "2026-05-27T12:03:45.470Z",
+      "usageCount": 0
+    },
+    {
+      "id": "1779883425474",
+      "name": "협조 요청",
+      "category": "일반공문",
+      "description": "협조 요청 공문 양식",
+      "formatText": "1. 관련 근거\n   가.\n   나.\n2. 요청 내용\n3. 협조 사항\n   가.\n   나.\n4. 제출 기한:\n붙임. 관련 서식 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "관련 근거",
+          "originalLine": "1. 관련 근거",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "",
+          "originalLine": "가.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "",
+          "originalLine": "나.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "요청 내용",
+          "originalLine": "2. 요청 내용",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "3",
+          "content": "협조 사항",
+          "originalLine": "3. 협조 사항",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "",
+          "originalLine": "가.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "",
+          "originalLine": "나.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "4",
+          "content": "제출 기한:",
+          "originalLine": "4. 제출 기한:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 0,
+          "type": "attachment",
+          "marker": "관련 서식 1부.  끝.",
+          "content": "관련 서식 1부.  끝.",
+          "originalLine": "붙임. 관련 서식 1부.  끝.",
+          "isPlaceholder": false
+        }
+      ],
+      "createdAt": "2026-05-27T12:03:45.474Z",
+      "updatedAt": "2026-05-27T12:03:45.474Z",
+      "usageCount": 0
+    },
+    {
+      "id": "1779883425479",
+      "name": "특수교육 지원 신청",
+      "category": "특수교육",
+      "description": "특수교육 지원 관련 기안문 양식",
+      "formatText": "1. 목적\n2. 지원 개요\n   가. 대  상:\n   나. 지원 내용:\n   다. 지원 기간:\n3. 추진 일정\n   가. 신청:\n   나. 선정:\n   다. 지원:\n4. 행정 사항\n   가.\n   나.\n붙임. 1. 신청서 1부.\n      2. 관련 서류 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "목적",
+          "originalLine": "1. 목적",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "지원 개요",
+          "originalLine": "2. 지원 개요",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "대  상:",
+          "originalLine": "가. 대  상:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "지원 내용:",
+          "originalLine": "나. 지원 내용:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "다",
+          "content": "지원 기간:",
+          "originalLine": "다. 지원 기간:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "3",
+          "content": "추진 일정",
+          "originalLine": "3. 추진 일정",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "신청:",
+          "originalLine": "가. 신청:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "선정:",
+          "originalLine": "나. 선정:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "다",
+          "content": "지원:",
+          "originalLine": "다. 지원:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "4",
+          "content": "행정 사항",
+          "originalLine": "4. 행정 사항",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "",
+          "originalLine": "가.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "",
+          "originalLine": "나.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 0,
+          "type": "attachment",
+          "marker": "1. 신청서 1부.",
+          "content": "1. 신청서 1부.",
+          "originalLine": "붙임. 1. 신청서 1부.",
+          "isPlaceholder": false
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "관련 서류 1부.  끝.",
+          "originalLine": "2. 관련 서류 1부.  끝.",
+          "isPlaceholder": false
+        }
+      ],
+      "createdAt": "2026-05-27T12:03:45.479Z",
+      "updatedAt": "2026-05-27T12:03:45.479Z",
+      "usageCount": 0
+    },
+    {
+      "id": "1781144935322",
+      "name": "붙임첨부형 (기본)",
+      "category": "일반기안문",
+      "description": "관련 공문 번호 + 붙임파일만 첨부하는 단순 기안문 양식",
+      "formatText": "1. 관련: ___\n2. ___을 붙임과 같이 제출합니다.\n붙임  ___ 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "관련: ___",
+          "originalLine": "1. 관련: ___",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "___을 붙임과 같이 제출합니다.",
+          "originalLine": "2. ___을 붙임과 같이 제출합니다.",
+          "isPlaceholder": true
+        },
+        {
+          "level": -1,
+          "type": "text",
+          "marker": "",
+          "content": "붙임  ___ 1부.  끝.",
+          "originalLine": "붙임  ___ 1부.  끝.",
+          "isPlaceholder": true
+        }
+      ],
+      "createdAt": "2026-06-11T02:28:55.322Z",
+      "updatedAt": "2026-06-11T02:28:55.324Z",
+      "usageCount": 0
+    },
+    {
+      "id": "1781144935331",
+      "name": "실시안내형 (교육/행사)",
+      "category": "일반기안문",
+      "description": "교육 또는 행사 실시 기안문 양식 (직무교육, 연수 등)",
+      "formatText": "1. 관련\n   가. ___\n   나. ___\n2. ___을 아래와 같이 실시하고자 합니다.\n   가. 일시: \n   나. 장소: \n   다. 대상: \n   라. 내용\n      1) \n      2) \n붙임  1. ___ 1부.\n      2. ___ 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "관련",
+          "originalLine": "1. 관련",
+          "isPlaceholder": false
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "___",
+          "originalLine": "가. ___",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "___",
+          "originalLine": "나. ___",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "___을 아래와 같이 실시하고자 합니다.",
+          "originalLine": "2. ___을 아래와 같이 실시하고자 합니다.",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "일시:",
+          "originalLine": "가. 일시:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "장소:",
+          "originalLine": "나. 장소:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "다",
+          "content": "대상:",
+          "originalLine": "다. 대상:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "라",
+          "content": "내용",
+          "originalLine": "라. 내용",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "1",
+          "content": "",
+          "originalLine": "1)",
+          "isPlaceholder": false
+        },
+        {
+          "level": 3,
+          "type": "arabic_paren",
+          "marker": "2",
+          "content": "",
+          "originalLine": "2)",
+          "isPlaceholder": false
+        },
+        {
+          "level": -1,
+          "type": "text",
+          "marker": "",
+          "content": "붙임  1. ___ 1부.",
+          "originalLine": "붙임  1. ___ 1부.",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "___ 1부.  끝.",
+          "originalLine": "2. ___ 1부.  끝.",
+          "isPlaceholder": true
+        }
+      ],
+      "createdAt": "2026-06-11T02:28:55.332Z",
+      "updatedAt": "2026-06-11T02:28:55.332Z",
+      "usageCount": 0
+    },
+    {
+      "id": "1781144935335",
+      "name": "신청/처리요청형",
+      "category": "일반기안문",
+      "description": "재배치, 신청, 처리요청 기안문 양식",
+      "formatText": "1. 관련: ___\n2. ___을 다음과 같이 신청하오니 처리하여 주시기 바랍니다.\n   가. 대상: \n   나. 형태: \n   다. 사유: \n붙임  1. ___ 1부.\n      2. ___ 1부.\n      3. ___ 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "관련: ___",
+          "originalLine": "1. 관련: ___",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "___을 다음과 같이 신청하오니 처리하여 주시기 바랍니다.",
+          "originalLine": "2. ___을 다음과 같이 신청하오니 처리하여 주시기 바랍니다.",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "대상:",
+          "originalLine": "가. 대상:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "형태:",
+          "originalLine": "나. 형태:",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "다",
+          "content": "사유:",
+          "originalLine": "다. 사유:",
+          "isPlaceholder": true
+        },
+        {
+          "level": -1,
+          "type": "text",
+          "marker": "",
+          "content": "붙임  1. ___ 1부.",
+          "originalLine": "붙임  1. ___ 1부.",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "___ 1부.",
+          "originalLine": "2. ___ 1부.",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "3",
+          "content": "___ 1부.  끝.",
+          "originalLine": "3. ___ 1부.  끝.",
+          "isPlaceholder": true
+        }
+      ],
+      "createdAt": "2026-06-11T02:28:55.335Z",
+      "updatedAt": "2026-06-11T02:28:55.335Z",
+      "usageCount": 0
+    },
+    {
+      "id": "1781144935339",
+      "name": "가정통신문 송부형",
+      "category": "일반기안문",
+      "description": "가정통신문 발송 기안문 양식",
+      "formatText": "1. 관련: ___\n2. ___ 가정통신문을 다음과 같이 송부하고자 합니다.\n   가. 대상: ___학년 특수교육대상학생 및 학부모\n   나. 내용: ___\n붙임  (가정통신문)___ 1부.  끝.",
+      "structure": [
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "1",
+          "content": "관련: ___",
+          "originalLine": "1. 관련: ___",
+          "isPlaceholder": true
+        },
+        {
+          "level": 1,
+          "type": "arabic_dot",
+          "marker": "2",
+          "content": "___ 가정통신문을 다음과 같이 송부하고자 합니다.",
+          "originalLine": "2. ___ 가정통신문을 다음과 같이 송부하고자 합니다.",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "가",
+          "content": "대상: ___학년 특수교육대상학생 및 학부모",
+          "originalLine": "가. 대상: ___학년 특수교육대상학생 및 학부모",
+          "isPlaceholder": true
+        },
+        {
+          "level": 2,
+          "type": "korean_dot",
+          "marker": "나",
+          "content": "내용: ___",
+          "originalLine": "나. 내용: ___",
+          "isPlaceholder": true
+        },
+        {
+          "level": -1,
+          "type": "text",
+          "marker": "",
+          "content": "붙임  (가정통신문)___ 1부.  끝.",
+          "originalLine": "붙임  (가정통신문)___ 1부.  끝.",
+          "isPlaceholder": true
+        }
+      ],
+      "createdAt": "2026-06-11T02:28:55.339Z",
+      "updatedAt": "2026-06-11T02:28:55.339Z",
+      "usageCount": 0
+    }
+  ],
+  "lastUpdated": "2026-06-11T02:28:55.339Z"
+}
