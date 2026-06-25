@@ -2,20 +2,16 @@
 /**
  * K에듀파인 기안문 자동화 - 메인 실행 파일
  *
- * 사용 전 준비:
- *   1. 바탕화면 "에듀파인 자동화 Chrome" 바로가기로 Chrome 실행
- *   2. 에듀파인 로그인 (공인인증서)
- *   3. 일반기안문 작성 화면 열기
- *   4. 이 프로그램 실행: node main.js
+ * 사용법:
+ *   node main.js          → 메뉴 실행
+ *   node main.js --login  → 자동 로그인 후 바로 기안문 작성
  */
 
 require('dotenv').config();
 
-const path = require('path');
-const fs = require('fs');
 const readline = require('readline');
-
 const automation = require('./automation');
+const loginModule = require('./login');
 const { parseFiles } = require('./fileParser');
 const templateMgr = require('./templateManager');
 const ai = require('./aiHelper');
@@ -25,6 +21,9 @@ const ask = (q) => new Promise(resolve => rl.question(q, resolve));
 
 function sep(char = '═', len = 55) { console.log(char.repeat(len)); }
 
+// 자동 로그인으로 얻은 세션 (있으면 CDP 연결 대신 사용)
+let loginSession = null;
+
 // ─────────────────────────────────────────
 // 메인 메뉴
 // ─────────────────────────────────────────
@@ -33,15 +32,19 @@ async function mainMenu() {
   sep();
   console.log('  📋 K에듀파인 기안문 자동화 시스템');
   sep();
-  console.log('  1. 기안문 자동 작성 (템플릿 선택 → AI 생성 → 에듀파인 입력)');
+  console.log('  1. 기안문 자동 작성');
   console.log('  2. 글 양식 관리 (목록/추가/삭제)');
   console.log('  3. 파일 내용 미리보기');
-  console.log('  4. Chrome 연결 확인');
-  console.log('  5. 에듀파인 화면 구조 분석 (개발자용)');
+  console.log('  4. Chrome 연결 확인 (수동 로그인 방식)');
+  console.log('  5. 자동 로그인 (인증서 비밀번호 자동 입력)');
+  console.log('  6. 에듀파인 화면 구조 분석 (개발자용)');
   console.log('  0. 종료');
   sep();
-  console.log('  ※ 사전 준비: 바탕화면 "에듀파인 자동화 Chrome"으로');
-  console.log('               Chrome 실행 후 기안문 작성 화면 열어두기');
+  if (loginSession) {
+    console.log('  ✅ 자동 로그인 세션 활성화됨');
+  } else {
+    console.log('  ※ 5번으로 자동 로그인하거나, 수동으로 Chrome 실행 후 1번 실행');
+  }
   sep();
 
   const choice = await ask('  선택: ');
@@ -51,7 +54,8 @@ async function mainMenu() {
     case '2': await menuTemplates(); break;
     case '3': await menuFilePreview(); break;
     case '4': await menuCheckConnection(); break;
-    case '5': await menuAnalyze(); break;
+    case '5': await menuAutoLogin(); break;
+    case '6': await menuAnalyze(); break;
     case '0':
       rl.close();
       await automation.disconnect();
@@ -65,6 +69,44 @@ async function mainMenu() {
 }
 
 // ─────────────────────────────────────────
+// 메뉴 5: 자동 로그인
+// ─────────────────────────────────────────
+async function menuAutoLogin() {
+  console.clear();
+  sep();
+  console.log('  🔐 APKI 자동 로그인');
+  sep();
+  console.log('  .env 파일의 CERT_PASSWORD로 인증서 로그인을 자동 처리합니다.');
+  console.log('  USB(이동식디스크)가 연결되어 있어야 합니다.\n');
+
+  if (!process.env.CERT_PASSWORD) {
+    console.log('  ❌ .env 파일에 CERT_PASSWORD가 없습니다.');
+    console.log('  .env.example을 참고해서 추가해주세요.');
+    await ask('\n  엔터...');
+    return;
+  }
+
+  const go = await ask('  자동 로그인 시작? (y/N): ');
+  if (go.toLowerCase() !== 'y') return;
+
+  try {
+    console.log('');
+    const session = await loginModule.launchAndLogin();
+    loginSession = session;
+
+    // automation 모듈에 세션 주입
+    automation.setBrowserPage(session.browser, session.page);
+
+    console.log('\n  ✅ 로그인 완료. 이제 메뉴 1번으로 기안문 작성을 시작하세요.');
+  } catch (e) {
+    console.log(`\n  ❌ 자동 로그인 실패: ${e.message}`);
+    console.log('  수동으로 Chrome을 실행해서 로그인 후 1번을 사용하세요.');
+  }
+
+  await ask('\n  엔터를 눌러 메인 메뉴로...');
+}
+
+// ─────────────────────────────────────────
 // 메뉴 1: 기안문 자동 작성
 // ─────────────────────────────────────────
 async function menuAutoWrite() {
@@ -73,7 +115,6 @@ async function menuAutoWrite() {
   console.log('  📝 기안문 자동 작성');
   sep();
 
-  // 양식 선택
   const templates = templateMgr.listTemplates();
   if (templates.length === 0) {
     console.log('  ⚠️  저장된 양식이 없습니다. 먼저 양식을 등록해주세요.');
@@ -100,7 +141,6 @@ async function menuAutoWrite() {
   console.log(template.formatText);
   console.log('─'.repeat(40));
 
-  // 제목 입력
   let title = await ask('\n  문서 제목: ');
   if (!title.trim()) {
     console.log('  제목을 입력해야 합니다.');
@@ -108,21 +148,17 @@ async function menuAutoWrite() {
     return;
   }
 
-  // 본문 - 빈칸 채우기 또는 AI 사용
   let bodyText = '';
   const useAi = await ask('\n  AI로 본문 자동 생성? (y/N): ');
 
   if (useAi.toLowerCase() === 'y') {
-    // 붙임 파일 첨부 여부
     console.log('\n  📎 붙임 파일 경로 입력 (없으면 엔터):');
     console.log('  예) C:\\Users\\Administrator\\Desktop\\계획서.hwp');
     const filesInput = await ask('  파일: ');
 
     let attachedFileData = [];
-    let filePaths = [];
-
     if (filesInput.trim()) {
-      filePaths = filesInput.split(',').map(f => f.trim().replace(/^["']|["']$/g, ''));
+      const filePaths = filesInput.split(',').map(f => f.trim().replace(/^["']|["']$/g, ''));
       console.log('\n  파일 파싱 중...');
       attachedFileData = await parseFiles(filePaths);
       for (const f of attachedFileData) {
@@ -132,7 +168,6 @@ async function menuAutoWrite() {
     }
 
     const hints = await ask('\n  추가 지시사항 (예: "3학년 학생 5명 대상, 6월 예정"): ');
-
     const schoolInfo = {
       schoolName: process.env.SCHOOL_NAME || '효문고등학교',
       teacherName: process.env.TEACHER_NAME || '',
@@ -148,14 +183,12 @@ async function menuAutoWrite() {
       bodyText = generated.body;
     } catch (aiErr) {
       console.log(`\n  ❌ AI 오류: ${aiErr.message}`);
-      console.log('  직접 본문을 입력합니다.');
       bodyText = await inputBodyManually(template.formatText);
     }
   } else {
     bodyText = await inputBodyManually(template.formatText);
   }
 
-  // 미리보기
   console.log('\n' + '─'.repeat(55));
   console.log('  🎯 기안문 미리보기');
   console.log('─'.repeat(55));
@@ -170,33 +203,27 @@ async function menuAutoWrite() {
     return;
   }
 
-  // 에듀파인 자동 입력
   await runEdupineAutoFill({ title, bodyText, template });
   await ask('\n  엔터를 눌러 메인 메뉴로...');
 }
 
-// 본문 빈칸 직접 입력
 async function inputBodyManually(formatText) {
-  console.log('\n  양식의 ___ 부분을 채워주세요.');
-  console.log('  (그냥 본문 전체를 직접 입력해도 됩니다)\n');
-  console.log('  방법 선택:');
+  console.log('\n  양식의 ___ 부분을 채워주세요.\n');
   console.log('  1. 빈칸(___)만 채우기');
   console.log('  2. 본문 전체 입력');
   const method = await ask('  선택 (1/2): ');
 
   if (method.trim() === '1') {
-    let body = formatText;
     const blanks = formatText.match(/___/g);
     if (!blanks) return formatText;
-
     console.log(`\n  빈칸 ${blanks.length}개를 순서대로 입력하세요:`);
     let tempBody = formatText;
     for (let i = 0; i < blanks.length; i++) {
-      const context = tempBody.substring(
+      const ctx = tempBody.substring(
         Math.max(0, tempBody.indexOf('___') - 30),
         tempBody.indexOf('___') + 30
       );
-      const val = await ask(`  [${i + 1}/${blanks.length}] "...${context}..." → `);
+      const val = await ask(`  [${i + 1}/${blanks.length}] "...${ctx}..." → `);
       tempBody = tempBody.replace('___', val);
     }
     return tempBody;
@@ -216,22 +243,20 @@ async function inputBodyManually(formatText) {
 // 에듀파인 자동 입력 실행
 // ─────────────────────────────────────────
 async function runEdupineAutoFill({ title, bodyText, template }) {
-  console.log('\n  🌐 Chrome에 연결 중...');
-
   try {
-    await automation.connectToChrome();
-    await automation.findEdupinePage();
+    // 자동 로그인 세션이 있으면 재사용, 없으면 CDP 연결
+    if (loginSession) {
+      console.log('\n  ✅ 자동 로그인 세션 사용');
+    } else {
+      console.log('\n  🌐 Chrome CDP 연결 중...');
+      await automation.connectToChrome();
+      await automation.findEdupinePage();
+    }
 
-    console.log('\n  ✅ 에듀파인 탭 연결 완료');
-
-    // 기안문 작성 화면으로 자동 이동 시도
     const navigated = await automation.navigateToDraftWrite();
-
     if (!navigated) {
-      console.log('\n  ──────────────────────────────────────');
-      console.log('  ⚠️  Chrome에서 직접 기안문 작성 화면을 열어주세요.');
-      console.log('  ⚠️  준비가 되면 엔터를 누르세요.');
-      await ask('');
+      console.log('\n  ⚠️  Chrome에서 직접 기안문 작성 화면을 열어주세요.');
+      await ask('  준비 완료 후 엔터...');
     }
 
     const result = await automation.fillDocument({
@@ -245,11 +270,6 @@ async function runEdupineAutoFill({ title, bodyText, template }) {
     console.log(`  본문: ${result.bodyFilled ? '✅' : '❌ 수동 입력 필요'}`);
     console.log('  결재경로: ✋ 수동 설정 필요');
     console.log('  ─────────────────────────────────────');
-
-    if (!result.titleFilled || !result.bodyFilled) {
-      console.log('\n  ⚠️  일부 자동 입력 실패. 화면을 확인해주세요.');
-      console.log('  메뉴 5번 "화면 구조 분석"을 실행하면 selector를 파악할 수 있습니다.');
-    }
 
   } catch (e) {
     console.log(`\n  ❌ 오류: ${e.message}`);
@@ -272,19 +292,15 @@ async function menuTemplates() {
   sep();
 
   const choice = await ask('  선택: ');
-
   switch (choice.trim()) {
     case '1': {
       const list = templateMgr.listTemplates();
       console.log(`\n  저장된 양식 (${list.length}개):`);
-      if (list.length === 0) {
-        console.log('  (없음)');
-      } else {
-        list.forEach((t, i) => {
-          console.log(`\n  ${i + 1}. [${t.category || '기타'}] ${t.name}`);
-          if (t.description) console.log(`     ${t.description}`);
-        });
-      }
+      if (list.length === 0) console.log('  (없음)');
+      else list.forEach((t, i) => {
+        console.log(`\n  ${i + 1}. [${t.category || '기타'}] ${t.name}`);
+        if (t.description) console.log(`     ${t.description}`);
+      });
       break;
     }
     case '2': {
@@ -292,15 +308,10 @@ async function menuTemplates() {
       list.forEach((t, i) => console.log(`  ${i + 1}. [${t.category}] ${t.name}`));
       const idx = await ask('  번호: ');
       const tmpl = list[parseInt(idx) - 1];
-      if (tmpl) {
-        console.log(`\n  ── [${tmpl.name}] ──`);
-        console.log(tmpl.formatText);
-      }
+      if (tmpl) { console.log(`\n  ── [${tmpl.name}] ──`); console.log(tmpl.formatText); }
       break;
     }
-    case '3':
-      await templateMgr.interactiveTemplateInput();
-      break;
+    case '3': await templateMgr.interactiveTemplateInput(); break;
     case '4': {
       const list = templateMgr.listTemplates();
       list.forEach((t, i) => console.log(`  ${i + 1}. ${t.name}`));
@@ -308,20 +319,16 @@ async function menuTemplates() {
       const tmpl = list[parseInt(idx) - 1];
       if (tmpl) {
         const ok = await ask(`  "${tmpl.name}" 삭제? (y/N): `);
-        if (ok.toLowerCase() === 'y') {
-          templateMgr.deleteTemplate(tmpl.id);
-          console.log('  ✅ 삭제됨');
-        }
+        if (ok.toLowerCase() === 'y') { templateMgr.deleteTemplate(tmpl.id); console.log('  ✅ 삭제됨'); }
       }
       break;
     }
   }
-
   await ask('\n  엔터를 눌러 계속...');
 }
 
 // ─────────────────────────────────────────
-// 메뉴 3: 파일 파서 테스트
+// 메뉴 3: 파일 미리보기
 // ─────────────────────────────────────────
 async function menuFilePreview() {
   console.clear();
@@ -345,7 +352,6 @@ async function menuFilePreview() {
   } catch (e) {
     console.log(`  ❌ 오류: ${e.message}`);
   }
-
   await ask('\n  엔터...');
 }
 
@@ -355,58 +361,45 @@ async function menuFilePreview() {
 async function menuCheckConnection() {
   console.clear();
   sep();
-  console.log('  🔗 Chrome CDP 연결 확인');
+  console.log('  🔗 Chrome CDP 연결 확인 (수동 로그인 방식)');
   sep();
-  console.log('  ※ 바탕화면 "에듀파인 자동화 Chrome"으로 Chrome이');
-  console.log('     실행 중이어야 합니다.\n');
 
   try {
     await automation.connectToChrome();
-    const page = await automation.findEdupinePage();
+    const p = await automation.findEdupinePage();
     console.log(`\n  ✅ 연결 성공!`);
-    console.log(`  현재 URL: ${page.url()}`);
+    console.log(`  현재 URL: ${p.url()}`);
   } catch (e) {
     console.log(`\n  ❌ 연결 실패: ${e.message}`);
-    console.log('\n  해결 방법:');
-    console.log('  1. 바탕화면의 "에듀파인 자동화 Chrome" 바로가기 실행');
-    console.log('  2. 기존 Chrome이 열려있다면 먼저 종료');
-    console.log('  3. 새로 열린 Chrome에서 에듀파인 로그인');
+    console.log('\n  → 바탕화면 "에듀파인 자동화 Chrome" 바로가기로 Chrome 실행 후 재시도');
+    console.log('  → 또는 메뉴 5번 자동 로그인 사용');
   }
-
   await ask('\n  엔터...');
 }
 
 // ─────────────────────────────────────────
-// 메뉴 5: 화면 구조 분석
+// 메뉴 6: 화면 구조 분석
 // ─────────────────────────────────────────
 async function menuAnalyze() {
   console.clear();
   sep();
   console.log('  🔍 에듀파인 화면 구조 분석');
   sep();
-  console.log('  기안문 자동 입력이 안 될 때 사용합니다.');
-  console.log('  에듀파인 기안문 작성 화면을 열어둔 상태에서 실행하세요.\n');
 
   const go = await ask('  시작? (y/N): ');
   if (go.toLowerCase() !== 'y') return;
 
   try {
-    await automation.connectToChrome();
+    if (!loginSession) await automation.connectToChrome();
     await automation.findEdupinePage();
-
-    // 기안문 작성 화면으로 이동 시도
     await automation.navigateToDraftWrite();
-
     await automation.analyzePageStructure();
 
-    const shot = await ask('\n  스크린샷도 저장할까요? (y/N): ');
-    if (shot.toLowerCase() === 'y') {
-      await automation.saveScreenshot(`분석_${Date.now()}.png`);
-    }
+    const shot = await ask('\n  스크린샷 저장? (y/N): ');
+    if (shot.toLowerCase() === 'y') await automation.saveScreenshot(`분석_${Date.now()}.png`);
   } catch (e) {
     console.log(`  ❌ 오류: ${e.message}`);
   }
-
   await ask('\n  엔터...');
 }
 
@@ -418,12 +411,18 @@ async function main() {
 
   const args = process.argv.slice(2);
 
-  if (args.includes('--analyze')) {
-    await automation.connectToChrome();
-    await automation.findEdupinePage();
-    await automation.analyzePageStructure();
-    await automation.disconnect();
-    process.exit(0);
+  // node main.js --login → 자동 로그인 후 바로 기안문 작성
+  if (args.includes('--login')) {
+    try {
+      console.log('  🔐 자동 로그인 시작...');
+      const session = await loginModule.launchAndLogin();
+      loginSession = session;
+      automation.setBrowserPage(session.browser, session.page);
+      console.log('  ✅ 로그인 완료. 메뉴로 진입합니다.\n');
+    } catch (e) {
+      console.log(`  ❌ 자동 로그인 실패: ${e.message}`);
+      console.log('  수동 로그인 방식으로 계속 진행합니다.\n');
+    }
   }
 
   await mainMenu();
