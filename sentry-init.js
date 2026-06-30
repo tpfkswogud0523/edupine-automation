@@ -1,13 +1,15 @@
 'use strict';
 
+const defaultDsn = 'https://869a6f6088eb0f6ab240c18b3c6abcd8@o4511540280360960.ingest.us.sentry.io/4511654049939457';
+const dsn = process.env.SENTRY_DSN || defaultDsn;
 let Sentry = null;
 
-if (process.env.SENTRY_DSN) {
+if (dsn) {
   try {
     Sentry = require('@sentry/node');
 
     Sentry.init({
-      dsn: process.env.SENTRY_DSN,
+      dsn,
       environment: process.env.SENTRY_ENVIRONMENT || 'production',
       release: process.env.SENTRY_RELEASE,
       tracesSampleRate: Number(process.env.SENTRY_TRACES_SAMPLE_RATE || 0),
