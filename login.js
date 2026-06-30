@@ -1,3 +1,5 @@
+require('./sentry-init');
+
 /**
  * K에듀파인 APKI 자동 로그인 모듈
  *

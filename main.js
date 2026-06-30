@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+require('./sentry-init');
+
 /**
  * K에듀파인 기안문 자동화 - 메인 실행 파일
  *

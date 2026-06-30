@@ -1,3 +1,5 @@
+require('./sentry-init');
+
 /**
  * K에듀파인 기안문 자동화 모듈
  * Chrome CDP (원격 디버깅) 방식으로 기존 로그인 세션 재사용
